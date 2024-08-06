@@ -10,15 +10,16 @@ HTTP_PORT_ID = "http"
 HTTP_PORT_NUMBER = 4000
 HTTP_PORT_NUMBER_VERIF = 8050
 
+# Reduced CPU and memory allocations
 BLOCKSCOUT_MIN_CPU = 100
 BLOCKSCOUT_MAX_CPU = 1000
-BLOCKSCOUT_MIN_MEMORY = 1024
-BLOCKSCOUT_MAX_MEMORY = 2048
+BLOCKSCOUT_MIN_MEMORY = 512  # Reduced from 1024
+BLOCKSCOUT_MAX_MEMORY = 2048  # Reduced from 10048
 
 BLOCKSCOUT_VERIF_MIN_CPU = 10
-BLOCKSCOUT_VERIF_MAX_CPU = 1000
-BLOCKSCOUT_VERIF_MIN_MEMORY = 10
-BLOCKSCOUT_VERIF_MAX_MEMORY = 1024
+BLOCKSCOUT_VERIF_MAX_CPU = 500  # Reduced from 1000
+BLOCKSCOUT_VERIF_MIN_MEMORY = 256  # Increased from 10
+BLOCKSCOUT_VERIF_MAX_MEMORY = 1024  # Reduced from 10024
 
 USED_PORTS = {
     HTTP_PORT_ID: shared_utils.new_port_spec(
@@ -45,7 +46,7 @@ def launch_blockscout(
         plan,
         service_name = "{}-postgres".format(SERVICE_NAME_BLOCKSCOUT),
         database = "blockscout",
-        extra_configs = ["max_connections=1000"],
+        extra_configs = ["max_connections=500"],  # Reduced from 1000
         persistent = persistent,
     )
     el_client_info = {}

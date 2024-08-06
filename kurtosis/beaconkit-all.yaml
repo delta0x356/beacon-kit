@@ -72,7 +72,7 @@ node_settings:
       min_cpu: 0
       max_cpu: 2000
       min_memory: 0
-      max_memory: 2048
+      max_memory: 10048
     images:
       beaconkit: beacond:kurtosis-local
     config:
